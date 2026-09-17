@@ -34,7 +34,7 @@ npm install @tetherto/wdk-wallet-evm-7702-gasless
 The examples below use [Candide](https://dashboard.candide.dev) as the bundler and paymaster. Candide serves both from a single unified URL, so only `bundlerUrl` is needed — the paymaster is reached at the same endpoint, and the chain is selected by its chain ID in the path:
 
 - Public: `https://api.candide.dev/public/v3/{chainId}` — rate-limited, no key required
-- Authenticated: `https://api.candide.dev/api/v3/{chainId}/{apiKey}` — API key from the dashboard, required for sponsorship policies
+- Authenticated: `https://api.candide.dev/api/v3/{chainId}/{apiKey}` — API key from the dashboard, for your own gas policies and higher rate limits
 
 ### Creating a Wallet (Sponsored Mode)
 
@@ -62,8 +62,8 @@ const wallet = new WalletManagerEvm7702Gasless(seedPhrase, {
   bundlerUrl: 'https://api.candide.dev/api/v3/1/YOUR_API_KEY',
   paymasterAddress: '0xa8151918eac3818deb713d3dbbb7930329fe86ed', // Candide, Ethereum mainnet, EntryPoint v0.8
   paymasterToken: { address: '0xdAC17F958D2ee523a2206206994597C13D831ec7' }, // USDT
-  transferMaxFee: 100000000000000n,
-  transactionMaxFee: 100000000000000n
+  transferMaxFee: 100000n, // 0.1 USDT, in the paymaster token's base units
+  transactionMaxFee: 100000n
 })
 ```
 
@@ -78,8 +78,8 @@ const wallet = new WalletManagerEvm7702Gasless(seedPhrase, {
   bundlerUrl: 'https://api.pimlico.io/v2/1/rpc?apikey=YOUR_KEY',
   paymasterAddress: '0x888888888888Ec68A58AB8094Cc1AD20Ba3D2402', // Pimlico, Ethereum mainnet, EntryPoint v0.8
   paymasterToken: { address: '0xdAC17F958D2ee523a2206206994597C13D831ec7' }, // USDT
-  transferMaxFee: 100000000000000n,
-  transactionMaxFee: 100000000000000n
+  transferMaxFee: 100000n, // 0.1 USDT, in the paymaster token's base units
+  transactionMaxFee: 100000n
 })
 ```
 
